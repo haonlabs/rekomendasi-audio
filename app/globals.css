@@ -1,0 +1,228 @@
+:root {
+  --bg: #f2f3f6;
+  --surface: #ffffff;
+  --ink: #161a22;
+  --muted: #5b6372;
+  --line: #d9dde5;
+  --focus: #3355ff;
+  --on-tier: #1b1407;
+  --display: var(--font-display), "Arial Narrow", system-ui, sans-serif;
+  --body: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12141a;
+    --surface: #1b1e26;
+    --ink: #e9ecf2;
+    --muted: #9aa3b2;
+    --line: #2c313c;
+    --focus: #8fa2ff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 var(--body);
+}
+
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+}
+
+/* Masthead */
+.source { margin: 0; color: var(--muted); }
+.masthead h1 {
+  margin: 4px 0 24px;
+  font: 800 clamp(2.4rem, 7vw, 4.5rem)/0.95 var(--display);
+  letter-spacing: -0.03em;
+}
+
+/* Kategori */
+.tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  scrollbar-width: thin;
+}
+.tabs a {
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current="page"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* Catatan pemilik sheet */
+.notes {
+  margin: 0 0 24px;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+  max-width: 72ch;
+}
+.notes p { margin: 0 0 6px; white-space: pre-line; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.toolbar input {
+  flex: 1 1 260px;
+  max-width: 420px;
+  padding: 10px 14px;
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filters button {
+  padding: 8px 14px;
+  font: inherit;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); font-weight: 700; }
+
+/* Tier list */
+.board {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.tier {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  min-height: 104px;
+}
+.tier + .tier { border-top: 1px solid var(--line); }
+/* Tab tanpa peringkat (DAP, Charger) tidak punya label tier. */
+.tier:not(:has(.tier-label)) { grid-template-columns: 1fr; }
+.tier-label {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: var(--tier);
+  color: var(--on-tier);
+  font: 800 min(3.25rem, calc(9.75rem / var(--len, 1)))/1 var(--display);
+  letter-spacing: -0.04em;
+}
+.tier-items {
+  list-style: none;
+  margin: 0;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  align-content: start;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  min-height: 76px;
+  padding: 10px 12px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tile:hover { border-color: var(--tier); }
+.tile-name { font-weight: 700; line-height: 1.25; }
+.tile-meta { color: var(--muted); font-size: 0.875rem; }
+
+.empty { color: var(--muted); max-width: 60ch; }
+
+/* Detail */
+.detail {
+  width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.detail::backdrop { background: rgb(10 12 18 / 0.55); }
+.detail article { padding: 24px; }
+.detail header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.detail-rank {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: var(--tier);
+  color: var(--on-tier);
+  font: 800 min(1.75rem, calc(5.25rem / var(--len, 1)))/1 var(--display);
+}
+.detail h3 { margin: 4px 0 0; font: 800 1.6rem/1.15 var(--display); }
+.detail-sub { margin: 4px 0 0; color: var(--muted); }
+.close {
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.detail dl { margin: 0; }
+.detail dl > div { padding: 12px 0; border-top: 1px solid var(--line); }
+.detail dt { color: var(--muted); font-size: 0.875rem; }
+.detail dd { margin: 2px 0 0; white-space: pre-line; max-width: 70ch; }
+.extra-link { margin-left: 10px; }
+
+.footer {
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .page { padding-top: 28px; }
+  .tier { grid-template-columns: 60px 1fr; }
+  .tier-label { font-size: min(2rem, calc(6rem / var(--len, 1))); }
+  .tier-items { padding: 8px; gap: 6px; }
+  .tier-items { grid-template-columns: 1fr 1fr; }
+  .tile { min-height: 64px; }
+}

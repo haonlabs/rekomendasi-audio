@@ -1,0 +1,22 @@
+{
+  "name": "nextjs_web_project",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --experimental-strip-types lib/sheet.test.ts"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "@types/react": "^19.3.0",
+    "typescript": "^5.9.3"
+  },
+  "private": true,
+  "type": "module"
+}
