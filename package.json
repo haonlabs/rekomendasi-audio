@@ -1,5 +1,5 @@
 {
-  "name": "nextjs_web_project",
+  "name": "rekomendasi-audio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

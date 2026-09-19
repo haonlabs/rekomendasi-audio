@@ -76,7 +76,8 @@ export default async function Page({ params }: Props) {
       )}
 
       <footer className="footer">
-        Data diambil {updated} WIB dan diperbarui otomatis setiap 5 menit. Semua review milik Fernanda Gunsan.
+        Data diambil {updated} WIB dan diperbarui otomatis setiap 5 menit. Semua review milik Fernanda Gunsan.{" "}
+        <Link href="/">Baru di sini? Baca cara bacanya</Link>.
       </footer>
     </main>
   );

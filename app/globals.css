@@ -48,6 +48,45 @@ a { color: inherit; text-underline-offset: 3px; }
   letter-spacing: -0.03em;
 }
 
+/* Halaman onboarding */
+.lede { margin: 0 0 8px; max-width: 62ch; color: var(--muted); font-size: 1.0625rem; }
+.sec { margin: 36px 0 12px; font: 800 1.5rem/1.2 var(--display); }
+.steps { margin: 0; padding-left: 1.25em; max-width: 68ch; }
+.steps li { margin-bottom: 10px; }
+.steps code {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  font-size: 0.875rem;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 20px 0; padding: 0; }
+.legend li {
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--tier);
+  color: var(--on-tier);
+  font: 800 0.9375rem/1 var(--display);
+}
+.cats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+.cats a {
+  display: block;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.cats a:hover { border-color: var(--ink); }
+
 /* Kategori */
 .tabs {
   display: flex;
